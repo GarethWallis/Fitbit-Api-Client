@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<AssemblyName>YourPackageName</AssemblyName>
+	<PackageId>YourPackageName</PackageId>
+	<Version>1.0.0</Version>
+	<!-- Version number -->
+	<Authors>Gareth Wallis</Authors>
+	<PackageDescription>A client library to interface fitbits webapi with an access token</PackageDescription>
+	<PackageTags>Fitbit;api</PackageTags>
+	<!-- Relevant tags -->
+	<RepositoryUrl>https://github.com/your-repo</RepositoryUrl>
+	<!-- Optional -->
+  </PropertyGroup>
+
+</Project>
