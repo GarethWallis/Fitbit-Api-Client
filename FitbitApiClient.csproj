@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<AssemblyName>FitbitApiClient</AssemblyName>
 		<PackageId>Fitbit-Api-GarethWallis</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>Gareth Wallis</Authors>
 		<PackageDescription>A .NET client library to interface with the Fitbit API using an already acquired access token.</PackageDescription>
 		<PackageTags>Fitbit;api</PackageTags>

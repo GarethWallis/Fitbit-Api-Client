@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using FitbitApiClient.Models;
 
 namespace FitbitApiClient
@@ -111,9 +107,6 @@ namespace FitbitApiClient
         public string RawContent { get; }
 
         public FitbitApiException(string message, string rawContent)
-            : base(message)
-        {
-            RawContent = rawContent;
-        }
-    }
+            : base(message) => RawContent = rawContent;
+    } 
 }

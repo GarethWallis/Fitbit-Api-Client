@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json;
 
 namespace FitbitApiClient.Models
 {
@@ -74,14 +71,6 @@ namespace FitbitApiClient.Models
 
         [JsonProperty("value")]
         public int Value { get; set; }
-    }
-
-    public class DateFormatConverter : IsoDateTimeConverter
-    {
-        public DateFormatConverter(string format)
-        {
-            DateTimeFormat = format;
-        }
     }
 
     public class TimeSpanConverter : JsonConverter
