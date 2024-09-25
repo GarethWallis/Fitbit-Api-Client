@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<AssemblyName>FitbitApiClient</AssemblyName>
 		<PackageId>Fitbit-Api-GarethWallis</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.8</Version>
 		<Authors>Gareth Wallis</Authors>
 		<PackageDescription>A .NET client library to interface with the Fitbit API using an already acquired access token.</PackageDescription>
 		<PackageTags>Fitbit;api</PackageTags>
@@ -15,7 +15,32 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/GarethWallis/Fitbit-Api-Client</RepositoryUrl>
 		<PackageReleaseNotes>Initial release of Fitbit API client.</PackageReleaseNotes>
+
+		<!-- Configure output paths -->
+		<PackageOutputPath>$(OutputPath)</PackageOutputPath>
+		<LocalNuGetFolder>C:\LocalNuGetFeed</LocalNuGetFolder>
 	</PropertyGroup>
+
+	<!-- Target to copy the package to your local NuGet folder -->
+	<Target Name="CopyPackage" AfterTargets="Pack">
+		<ItemGroup>
+			<PackageFiles Include="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" />
+			<SymbolPackageFiles Include="$(PackageOutputPath)\$(PackageId).$(PackageVersion).snupkg" Condition="Exists('$(PackageOutputPath)\$(PackageId).$(PackageVersion).snupkg')" />
+		</ItemGroup>
+
+		<Copy
+		  SourceFiles="@(PackageFiles)"
+		  DestinationFolder="$(LocalNuGetFolder)"
+    />
+		<Copy
+		  SourceFiles="@(SymbolPackageFiles)"
+		  DestinationFolder="$(LocalNuGetFolder)"
+		  Condition="@(SymbolPackageFiles->Count()) > 0"
+    />
+
+		<Message Text="Copied NuGet package to $(LocalNuGetFolder)" Importance="high" />
+		<Message Text="Copied Symbol package to $(LocalNuGetFolder)" Importance="high" Condition="@(SymbolPackageFiles->Count()) > 0" />
+	</Target>
 
 	<ItemGroup>
 		<None Include="LICENSE.md" Pack="true" PackagePath="" />

@@ -2,26 +2,26 @@
 
 namespace FitbitApiClient.Models
 {
-    public class HeartRateData
+    public class HeartRateIntradayData
     {
         [JsonProperty("activities-heart")]
-        public List<HeartActivity>? ActivitiesHeart { get; set; }
+        public List<ActivityHeart>? ActivitiesHeart { get; set; }
 
         [JsonProperty("activities-heart-intraday")]
-        public HeartIntraday? ActivitiesHeartIntraday { get; set; }
+        public ActivitiesHeartIntraday? ActivitiesHeartIntraday { get; set; }
     }
 
-    public class HeartActivity
+    public class ActivityHeart
     {
         [JsonProperty("dateTime")]
         [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-dd")]
         public DateTime DateTime { get; set; }
 
         [JsonProperty("value")]
-        public HeartValue? Value { get; set; }
+        public HeartRateValue? Value { get; set; }
     }
 
-    public class HeartValue
+    public class HeartRateValue
     {
         [JsonProperty("customHeartRateZones")]
         public List<HeartRateZone>? CustomHeartRateZones { get; set; }
@@ -30,31 +30,13 @@ namespace FitbitApiClient.Models
         public List<HeartRateZone>? HeartRateZones { get; set; }
 
         [JsonProperty("restingHeartRate")]
-        public int? RestingHeartRate { get; set; }
+        public int RestingHeartRate { get; set; }
     }
 
-    public class HeartRateZone
-    {
-        [JsonProperty("caloriesOut")]
-        public double CaloriesOut { get; set; }
-
-        [JsonProperty("max")]
-        public int Max { get; set; }
-
-        [JsonProperty("min")]
-        public int Min { get; set; }
-
-        [JsonProperty("minutes")]
-        public int Minutes { get; set; }
-
-        [JsonProperty("name")]
-        public string? Name { get; set; }
-    }
-
-    public class HeartIntraday
+    public class ActivitiesHeartIntraday
     {
         [JsonProperty("dataset")]
-        public List<HeartDataPoint>? Dataset { get; set; }
+        public List<HeartRateDataPoint>? Dataset { get; set; }
 
         [JsonProperty("datasetInterval")]
         public int DatasetInterval { get; set; }
@@ -63,13 +45,14 @@ namespace FitbitApiClient.Models
         public string? DatasetType { get; set; }
     }
 
-    public class HeartDataPoint
+    public class HeartRateDataPoint
     {
         [JsonProperty("time")]
-        [JsonConverter(typeof(TimeSpanConverter))]
+        [JsonConverter(typeof(TimeSpanConverter))]  // No format in the attribute, the default will be used
         public TimeSpan Time { get; set; }
 
         [JsonProperty("value")]
         public int Value { get; set; }
     }
+
 }
