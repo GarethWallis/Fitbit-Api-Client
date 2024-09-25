@@ -23,6 +23,8 @@ Install-Package Fitbit-Api-GarethWallis
 ```csharp
 using FitbitApiClient;
 
-var client = new FitbitClient("your_access_token");
-var userProfile = client.GetUserProfile();
-Console.WriteLine(userProfile);
+var fitbitclient = new FitbitClient("access_token");
+
+var hrvDataSingleDay = await fitbitclient.GetHrvIntradayDataForSingleDayAsync(DateTime.UtcNow);
+
+var hrvDataMultipleDays = await fitbitclient.GetHrvIntradayDataForMultipleDaysAsync(DateTime.UtcNow.AddDays(-2), DateTime.UtcNow);
