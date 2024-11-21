@@ -6,14 +6,14 @@ namespace FitbitApiClient
     public class FitbitClient : IDisposable
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://api.fitbit.com/1/user/-/";
+        private const string BaseUrl = "https://api.fitbit.com/1/user/";
         private bool _disposed = false;
 
-        public FitbitClient(string accessToken)
+        public FitbitClient(string accessToken, string userId = "-")
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri(BaseUrl)
+                BaseAddress = new Uri($"{BaseUrl}{userId}/")
             };
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
         }
